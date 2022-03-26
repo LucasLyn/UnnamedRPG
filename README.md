@@ -1,2 +1,2 @@
 # UnnamedRPG
-A littel text-based RPG project.
+A little text-based RPG project.
