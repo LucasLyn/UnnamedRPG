@@ -10,7 +10,7 @@ namespace UnnamedRPG {
             string[] menuOptions = {"Play", "Credits", "Exit"};
             Menu menu = new Menu(menuOptions);
 
-            menu.printMenu();
+            menu.Run();
         }
     }
 }
