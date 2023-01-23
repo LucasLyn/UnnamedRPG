@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace UnnamedRPG.UI {
     // A keyboard controllable menu object
     class Menu {
@@ -10,7 +7,9 @@ namespace UnnamedRPG.UI {
         private string NON_SELECTED_OPTION_PREFIX = "  ";
         private string SELECTED_OPTION_PREFIX = "> ";
 
-        ///<summary>Menu without a string prompt.</summary>
+        ///<summary>
+        ///Menu without a string prompt.
+        ///</summary>
         public Menu(string[] menuOptions) {
             this.menuOptions = menuOptions;
             this.prompt = ""; // Empty prompt string
@@ -26,8 +25,10 @@ namespace UnnamedRPG.UI {
             selectedIndex = 0;
         }
 
-        ///<summary>Prints the whole menu.</summary>
-        public/*private*/ void printMenu() {
+        ///<summary>
+        ///Prints the whole menu.
+        ///</summary>
+        private void printMenu() {
             if (prompt.Length > 0) {
                 Console.WriteLine($"{prompt}\n");
             }
@@ -39,8 +40,14 @@ namespace UnnamedRPG.UI {
 
         ///<summary>
         ///Prints a singular menu option.
-        ///Prints a prefix depending on if an item is selected.
+        ///Prints a prefix and color on the currently selected option.
         ///</summary>
+        ///<param name="option">
+        ///The menu option to print.
+        ///</param>
+        ///<param name="index">
+        ///The index of the passed menu option.
+        ///</param>
         private void printMenuOption(string option, int index) {
             if (selectedIndex == index) {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -52,6 +59,21 @@ namespace UnnamedRPG.UI {
             Console.WriteLine($"{option}");
 
             Console.ResetColor();
+        }
+
+
+        ///<summary>
+        ///Run the menu object.
+        ///</summary>
+        ///<returns>
+        ///An int corresponding to the currently selected index.
+        ///Return value should never be less than 0.
+        ///</returns>
+        public int Run() {
+            Console.Clear();
+            printMenu();
+            
+            return selectedIndex;
         }
     }
 }
