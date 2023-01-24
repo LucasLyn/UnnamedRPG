@@ -6,6 +6,7 @@ namespace UnnamedRPG.UI {
         private string prompt;
         private string NON_SELECTED_OPTION_PREFIX = "  ";
         private string SELECTED_OPTION_PREFIX = "> ";
+        private ConsoleColor SELECTED_OPTION_COLOR = ConsoleColor.Green;
 
         ///<summary>
         ///Menu without a string prompt.
@@ -50,7 +51,7 @@ namespace UnnamedRPG.UI {
         ///</param>
         private void printMenuOption(string option, int index) {
             if (selectedIndex == index) {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = SELECTED_OPTION_COLOR;
                 Console.Write($"{SELECTED_OPTION_PREFIX}");
             } else {
                 Console.Write($"{NON_SELECTED_OPTION_PREFIX}");
@@ -67,12 +68,48 @@ namespace UnnamedRPG.UI {
         ///</summary>
         ///<returns>
         ///An int corresponding to the currently selected index.
-        ///Return value should never be less than 0.
+        ///Returns -1 if Backspace has been pressed.
+        ///Return value should never be less than -1.
         ///</returns>
         public int Run() {
-            Console.Clear();
-            printMenu();
+            ConsoleKey pressedKey = default(ConsoleKey);
+
+            do {
+                // If pressedKey haven't been assigned, don't clear any lines
+                if (pressedKey != default(ConsoleKey)) {
+                    UIHelper.ClearLines(menuOptions.Length);
+                }
+                
+                printMenu();
+
+                // Get the pressed key
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                pressedKey = keyInfo.Key;
+
+                // Update the selected index
+                switch (pressedKey) {
+                    case ConsoleKey.UpArrow:
+                        selectedIndex--;
+                        break;
+                    
+                    case ConsoleKey.DownArrow:
+                        selectedIndex++;
+                        break;
+                    
+                    default:
+                        break;
+                }
+
+                // Check edges to not go out of bounds of the menu
+                if (selectedIndex < 0) {
+                    selectedIndex = 0;
+                } else if (selectedIndex >= menuOptions.Length) {
+                    selectedIndex = menuOptions.Length - 1;
+                }
+            } while (pressedKey != ConsoleKey.Enter &&
+                    pressedKey != ConsoleKey.Backspace);
             
+
             return selectedIndex;
         }
     }
