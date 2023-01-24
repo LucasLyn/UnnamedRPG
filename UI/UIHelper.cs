@@ -24,5 +24,17 @@ namespace UnnamedRPG.UI {
             // Set cursor postition to be on the last cleared line.
             Console.SetCursorPosition(0, Console.CursorTop);
         }
+
+        ///<summary>
+        ///Prints the given amount of empty lines in the console.
+        ///</summary>
+        ///<param name = "amount">
+        ///An int of the amount of empty lines to print.
+        ///</param> 
+        public static void PrintEmptyLines(int amount) {
+            for (int i = 0; i < amount; i++) {
+                Console.WriteLine();
+            }
+        }
     }
 }
