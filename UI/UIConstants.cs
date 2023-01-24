@@ -10,7 +10,7 @@ namespace UnnamedRPG.UI {
         ///<summary>
         ///Print the title (home) screen of the game.
         ///</summary>
-        public static void PrintHomeStartScreen() {
+        public static void PrintStartScreen() {
             Console.WriteLine(@"    ██╗   ██╗███╗   ██╗███╗   ██╗ █████╗ ███╗   ███╗███████╗██████╗     ██████╗ ██████╗  ██████╗ 
     ██║   ██║████╗  ██║████╗  ██║██╔══██╗████╗ ████║██╔════╝██╔══██╗    ██╔══██╗██╔══██╗██╔════╝ 
     ██║   ██║██╔██╗ ██║██╔██╗ ██║███████║██╔████╔██║█████╗  ██║  ██║    ██████╔╝██████╔╝██║  ███╗
